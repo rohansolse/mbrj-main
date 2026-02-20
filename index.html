@@ -30,9 +30,9 @@
         radial-gradient(900px 500px at 40% 90%, rgba(255, 140, 80, .12), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:center;
-      padding: 28px 16px;
+      padding: 24px 16px 32px;
     }
 
     .wrap{
@@ -85,13 +85,14 @@
       gap: 16px;
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 1180px){
+      .wrap{ width:min(940px, 100%); }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .topbar{ align-items:flex-start; }
       .hint{ text-align:left; max-width: unset; }
     }
 
-    @media (max-width: 560px){
+    @media (max-width: 720px){
       .grid{ grid-template-columns: 1fr; }
     }
 
@@ -210,9 +211,23 @@
       text-align:center;
     }
 
-    /* Make it feel centered vertically even with short screens */
-    @media (max-height: 700px){
-      body{ align-items:flex-start; }
+    @media (min-width: 721px) and (max-width: 1180px) and (orientation: portrait){
+      .wrap{ width:min(820px, 100%); }
+    }
+
+    @media (max-width: 1180px){
+      .tile{
+        min-height: 148px;
+        padding: 20px 20px 18px;
+      }
+      .title{ font-size: 18px; }
+      .desc{ font-size: 13.5px; }
+      .cta{ margin-top: 16px; }
+    }
+
+    @media (max-width: 720px){
+      .title{ font-size: 16.5px; }
+      .desc{ font-size: 13px; }
     }
   </style>
 </head>
@@ -221,17 +236,42 @@
   <main class="wrap">
     <div class="topbar">
       <div class="brand">
-        <h1>Welcome</h1>
+        <h1>Welcome to MBRJ</h1>
         <p>Select a module to continue.</p>
       </div>
     </div>
 
     <section class="grid">
-      <!-- 1) Attendance -->
-      <a class="tile accent-blue" href="/attendance" aria-label="Go to Attendance">
+      <!-- 1) Photo Gallery -->
+      <a class="tile accent-pink" href="/gallery" aria-label="Go to Photo Gallery">
         <div class="row">
           <div>
-            <h2 class="title">Attendance</h2>
+            <h2 class="title">Photo Gallery</h2>
+            <p class="desc">Browse albums and share client-ready previews.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- image icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 11l3 3 4-4 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 9.2a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 2) Attendance App -->
+      <a class="tile accent-blue" href="/attendance" aria-label="Go to Attendance App">
+        <div class="row">
+          <div>
+            <h2 class="title">Attendance App</h2>
             <p class="desc">Employee login, daily punches, and monthly overview.</p>
           </div>
           <div class="icon" aria-hidden="true">
@@ -251,43 +291,17 @@
         </div>
       </a>
 
-      <!-- 2) Selection -->
-      <a class="tile accent-green" href="/selection" aria-label="Go to Selection">
+      <!-- 3) Photo Selection -->
+      <a class="tile accent-green" href="/selection" aria-label="Go to Photo Selection">
         <div class="row">
           <div>
-            <h2 class="title">Selection</h2>
+            <h2 class="title">Photo Selection</h2>
             <p class="desc">Client photo selection and download workflow.</p>
           </div>
           <div class="icon" aria-hidden="true">
             <!-- check icon -->
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 3) MBRJ Co-Selection -->
-      <a class="tile accent-purple" href="/mbrj-co-selection" aria-label="Go to MBRJ Co-Selection">
-        <div class="row">
-          <div>
-            <h2 class="title">MBRJ Co-Selection</h2>
-            <p class="desc">Collaborative selection view for internal review.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- users icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
           </div>
         </div>
@@ -325,19 +339,20 @@
         </div>
       </a>
 
-      <!-- 5) Photo Gallery -->
-      <a class="tile accent-pink" href="/gallery" aria-label="Go to Photo Gallery">
+      <!-- 5) MBRJ Creator -->
+      <a class="tile accent-purple" href="/mbrj-co-selection" aria-label="Go to MBRJ Creator">
         <div class="row">
           <div>
-            <h2 class="title">Photo Gallery</h2>
-            <p class="desc">Browse albums and share client-ready previews.</p>
+            <h2 class="title">MBRJ Creator</h2>
+            <p class="desc">Collaborative creator view for internal review.</p>
           </div>
           <div class="icon" aria-hidden="true">
-            <!-- image icon -->
+            <!-- users icon -->
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M8 11l3 3 4-4 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 9.2a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6Z" fill="currentColor"/>
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
           </div>
         </div>
@@ -351,11 +366,11 @@
       </a>
 
       <!-- 6) Reports / Dashboard -->
-      <a class="tile accent-cyan" href="/reports" aria-label="Go to Reports">
+      <a class="tile accent-cyan" href="/reports" aria-label="Coming Soon">
         <div class="row">
           <div>
-            <h2 class="title">Reports</h2>
-            <p class="desc">Quick analytics, exports, and activity summaries.</p>
+            <h2 class="title">Coming Soon</h2>
+            <p class="desc">Reports and dashboard features will be available soon.</p>
           </div>
           <div class="icon" aria-hidden="true">
             <!-- bar chart icon -->
