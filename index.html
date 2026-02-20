@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portal</title>
+
+  <style>
+    :root{
+      --bg1:#0b1220;
+      --bg2:#070b13;
+      --card:#0f1a2d;
+      --card2:#0b1426;
+      --text:#eaf0ff;
+      --muted:#9fb0d0;
+      --ring: rgba(120, 170, 255, 0.35);
+      --shadow: 0 12px 35px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 15%, rgba(60, 115, 255, .28), transparent 55%),
+        radial-gradient(900px 500px at 85% 35%, rgba(95, 240, 190, .18), transparent 60%),
+        radial-gradient(900px 500px at 40% 90%, rgba(255, 140, 80, .12), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 16px;
+    }
+
+    .wrap{
+      width: min(1080px, 100%);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: clamp(20px, 3vw, 28px);
+      letter-spacing: .2px;
+      font-weight: 750;
+    }
+    .brand p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    .hint{
+      color: var(--muted);
+      font-size: 12.5px;
+      text-align:right;
+      line-height:1.4;
+      max-width: 340px;
+    }
+
+    /* Grid:
+       - desktop: 3 columns
+       - tablet: 2 columns
+       - mobile: 1 column
+    */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar{ align-items:flex-start; }
+      .hint{ text-align:left; max-width: unset; }
+    }
+
+    @media (max-width: 560px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .tile{
+      position:relative;
+      text-decoration:none;
+      color:inherit;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(600px 250px at 20% 0%, rgba(255,255,255,.08), transparent 45%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        linear-gradient(135deg, var(--card), var(--card2));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      transform: translateY(0);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      min-height: 130px;
+      padding: 18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      isolation:isolate;
+    }
+
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 200px at var(--x, 20%) var(--y, 0%),
+        rgba(120,170,255,.22), transparent 55%);
+      opacity:0;
+      transition: opacity .18s ease;
+      z-index:-1;
+    }
+
+    .tile:hover{
+      transform: translateY(-4px);
+      border-color: rgba(140,190,255,.22);
+      box-shadow: 0 16px 45px rgba(0,0,0,.55);
+    }
+    .tile:hover::before{ opacity:1; }
+
+    .tile:focus{
+      outline:none;
+      box-shadow: 0 0 0 4px var(--ring), var(--shadow);
+      border-color: rgba(160,205,255,.35);
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+
+    .icon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+
+    .title{
+      font-size: 16.5px;
+      font-weight: 720;
+      margin: 0 0 6px 0;
+      letter-spacing: .2px;
+    }
+
+    .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      margin-top: 14px;
+      color: rgba(235,245,255,.95);
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    .arrow{
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid;
+      place-items:center;
+      transition: transform .18s ease;
+    }
+    .tile:hover .arrow{ transform: translateX(2px); }
+
+    /* Optional different accent glows per tile */
+    .accent-blue{ --x: 20%; --y: 0%; }
+    .accent-green{ --x: 80%; --y: 10%; }
+    .accent-purple{ --x: 25%; --y: 50%; }
+    .accent-orange{ --x: 85%; --y: 55%; }
+    .accent-pink{ --x: 15%; --y: 85%; }
+    .accent-cyan{ --x: 70%; --y: 90%; }
+
+    footer{
+      margin-top: 14px;
+      color: rgba(170,190,220,.75);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    /* Make it feel centered vertically even with short screens */
+    @media (max-height: 700px){
+      body{ align-items:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1>Welcome</h1>
+        <p>Select a module to continue.</p>
+      </div>
+    </div>
+
+    <section class="grid">
+      <!-- 1) Attendance -->
+      <a class="tile accent-blue" href="/attendance" aria-label="Go to Attendance">
+        <div class="row">
+          <div>
+            <h2 class="title">Attendance</h2>
+            <p class="desc">Employee login, daily punches, and monthly overview.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- calendar icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M8 3v3M16 3v3M4 8h16M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M8 12h3M8 16h3M13 12h3M13 16h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 2) Selection -->
+      <a class="tile accent-green" href="/selection" aria-label="Go to Selection">
+        <div class="row">
+          <div>
+            <h2 class="title">Selection</h2>
+            <p class="desc">Client photo selection and download workflow.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- check icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3) MBRJ Co-Selection -->
+      <a class="tile accent-purple" href="/mbrj-co-selection" aria-label="Go to MBRJ Co-Selection">
+        <div class="row">
+          <div>
+            <h2 class="title">MBRJ Co-Selection</h2>
+            <p class="desc">Collaborative selection view for internal review.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- users icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 4) Admin Panel -->
+      <a class="tile accent-orange" href="/admin" aria-label="Go to Admin Panel">
+        <div class="row">
+          <div>
+            <h2 class="title">Admin Panel</h2>
+            <p class="desc">Manage users, projects, roles, and configuration.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- settings icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M19.4 15a7.8 7.8 0 0 0 .1-1 7.8 7.8 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a8.7 8.7 0 0 0-1.7-1l-.4-2.6H9.1L8.7 7a8.7 8.7 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a7.8 7.8 0 0 0-.1 1 7.8 7.8 0 0 0 .1 1l-2 1.5 2 3.5 2.4-1a8.7 8.7 0 0 0 1.7 1l.4 2.6h5.8l.4-2.6a8.7 8.7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5Z"
+                    stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 5) Photo Gallery -->
+      <a class="tile accent-pink" href="/gallery" aria-label="Go to Photo Gallery">
+        <div class="row">
+          <div>
+            <h2 class="title">Photo Gallery</h2>
+            <p class="desc">Browse albums and share client-ready previews.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- image icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 11l3 3 4-4 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 9.2a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 6) Reports / Dashboard -->
+      <a class="tile accent-cyan" href="/reports" aria-label="Go to Reports">
+        <div class="row">
+          <div>
+            <h2 class="title">Reports</h2>
+            <p class="desc">Quick analytics, exports, and activity summaries.</p>
+          </div>
+          <div class="icon" aria-hidden="true">
+            <!-- bar chart icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 20v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M22 20V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cta">
+          Open <span class="arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    </section>
+
+    <footer>
+      © <span id="y"></span> • MBRJ copyrights • Single-domain launcher page (static)
+    </footer>
+  </main>
+
+  <script>
+    // Just for the footer year; safe for static hosting
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Nice hover tracking for glow position (optional)
+    document.querySelectorAll(".tile").forEach((tile) => {
+      tile.addEventListener("mousemove", (e) => {
+        const r = tile.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        tile.style.setProperty("--x", x + "%");
+        tile.style.setProperty("--y", y + "%");
+      });
+    });
+  </script>
+</body>
+</html>
