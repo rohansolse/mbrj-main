@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">MBRJ Main favicon</title>
+  <desc id="desc">A warm-toned rounded square icon with a shield and check mark for MBRJ Main.</desc>
+  <defs>
+    <linearGradient id="frame" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#d39a7a" />
+      <stop offset="100%" stop-color="#8d432a" />
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="24%" r="80%">
+      <stop offset="0%" stop-color="#fffaf4" />
+      <stop offset="100%" stop-color="#f1dfd0" />
+    </radialGradient>
+    <linearGradient id="shield" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#c57c58" />
+      <stop offset="100%" stop-color="#8e3c24" />
+    </linearGradient>
+  </defs>
+
+  <rect x="18" y="18" width="476" height="476" rx="112" fill="#fff9f3" />
+  <rect x="18" y="18" width="476" height="476" rx="112" fill="none" stroke="url(#frame)" stroke-width="12" />
+
+  <circle cx="256" cy="256" r="164" fill="url(#glow)" />
+  <circle cx="256" cy="256" r="164" fill="none" stroke="rgba(141,67,42,0.10)" stroke-width="10" />
+
+  <path
+    d="M256 142 163 191v72c0 55 37 106 93 121 56-15 93-66 93-121v-72l-93-49Z"
+    fill="url(#shield)"
+  />
+  <path
+    d="M256 142 163 191v72c0 55 37 106 93 121 56-15 93-66 93-121v-72l-93-49Z"
+    fill="none"
+    stroke="#fdf4ed"
+    stroke-opacity=".36"
+    stroke-width="10"
+    stroke-linejoin="round"
+  />
+  <path
+    d="m209 255 35 35 62-70"
+    fill="none"
+    stroke="#fff8f2"
+    stroke-width="22"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
