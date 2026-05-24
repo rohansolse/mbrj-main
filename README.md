@@ -7,8 +7,6 @@ Static single-page redirect hub for the MBRJ product suite.
 - `index.html` - main landing page UI with grouped directories and direct destination cards
 - `client-experiences.html` - grouped page for pre-wedding, wedding, and maternity
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
-- `client-experiences.partial.html` - shared imported markup for the client experience cards
-- `internal-tools.partial.html` - shared imported markup for the internal tools cards
 
 ## Redirect Targets
 
@@ -22,8 +20,8 @@ Static single-page redirect hub for the MBRJ product suite.
 ## Structure
 
 - Main index with separate grouped entry cards for client experiences and internal tools
-- Client-facing cards loaded from a shared partial import
-- Internal tool cards loaded from a shared partial import
+- Dedicated client experiences page
+- Dedicated internal tools page
 - Static footer with current year
 
 ## Run Locally
@@ -41,6 +39,22 @@ python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Manual Deployment
+
+This site is deployed as plain static HTML under `/var/www/mbrj-main` on the server.
+
+- Upload the files to the server home folder first using `scp`
+- SSH into the server
+- Copy the files into `/var/www/mbrj-main` using `sudo cp`
+- Fix ownership with `sudo chown`
+- Fix permissions with `sudo chmod`
+- Verify with `ls -l /var/www/mbrj-main`
+
+Junior-friendly step-by-step deployment instructions are available in:
+
+- `MANUAL_DEPLOYMENT.md`
+- `scripts/deployment.manual.sh`
 
 ## Responsive Notes
 
