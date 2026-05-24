@@ -7,6 +7,9 @@ Static single-page redirect hub for the MBRJ product suite.
 - `index.html` - main landing page UI with grouped directories and direct destination cards
 - `client-experiences.html` - grouped page for pre-wedding, wedding, and maternity
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
+- `favicon.svg` - main favicon source
+- `favicon-32.png` - browser tab favicon fallback
+- `favicon-512.png` - larger favicon asset
 
 ## Redirect Targets
 
@@ -44,17 +47,33 @@ Then open `http://localhost:8080`.
 
 This site is deployed as plain static HTML under `/var/www/mbrj-main` on the server.
 
-- Upload the files to the server home folder first using `scp`
+- Sync the project folder to the server home folder using `rsync`
 - SSH into the server
-- Copy the files into `/var/www/mbrj-main` using `sudo cp`
-- Fix ownership with `sudo chown`
-- Fix permissions with `sudo chmod`
+- Sync the folder into `/var/www/mbrj-main` using `sudo rsync`
+- Fix ownership with `sudo chown -R`
+- Fix permissions for files and folders
 - Verify with `ls -l /var/www/mbrj-main`
 
-Junior-friendly step-by-step deployment instructions are available in:
+Generalized copy commands:
 
-- `MANUAL_DEPLOYMENT.md`
-- `scripts/deployment.manual.sh`
+```bash
+rsync -av --delete \
+  --exclude '.git/' \
+  --exclude 'README.md' \
+  --exclude 'MANUAL_DEPLOYMENT.md' \
+  /Users/rohansolse/Documents/mbrj-main/ \
+  rohansolse@192.168.1.33:/home/rohansolse/mbrj-main/
+```
+
+```bash
+ssh rohansolse@192.168.1.33
+sudo rsync -av --delete /home/rohansolse/mbrj-main/ /var/www/mbrj-main/
+sudo chown -R www-data:www-data /var/www/mbrj-main
+sudo find /var/www/mbrj-main -type d -exec chmod 755 {} \;
+sudo find /var/www/mbrj-main -type f -exec chmod 644 {} \;
+```
+
+Step-by-step deployment instructions are available in `MANUAL_DEPLOYMENT.md`.
 
 ## Responsive Notes
 
