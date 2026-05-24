@@ -3,414 +3,552 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portal</title>
-
+  <title>MBRJ Main</title>
+  <meta
+    name="description"
+    content="MBRJ main redirect hub for pre-wedding, wedding, maternity, easy select, and admin."
+  />
   <style>
     :root{
-      --bg1:#0b1220;
-      --bg2:#070b13;
-      --card:#0f1a2d;
-      --card2:#0b1426;
-      --text:#eaf0ff;
-      --muted:#9fb0d0;
-      --ring: rgba(120, 170, 255, 0.35);
-      --shadow: 0 12px 35px rgba(0,0,0,.45);
-      --radius: 18px;
+      --bg: #f6efe7;
+      --bg-soft: #fbf7f2;
+      --surface: rgba(255, 250, 244, 0.82);
+      --surface-strong: rgba(255, 248, 241, 0.94);
+      --line: rgba(90, 53, 34, 0.12);
+      --text: #24150f;
+      --muted: #6f5b50;
+      --accent: #a24f36;
+      --accent-strong: #7d321c;
+      --accent-soft: rgba(162, 79, 54, 0.12);
+      --shadow: 0 24px 60px rgba(88, 48, 31, 0.12);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1180px;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
     body{
-      margin:0;
-      min-height:100vh;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      margin: 0;
+      min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(1200px 600px at 20% 15%, rgba(60, 115, 255, .28), transparent 55%),
-        radial-gradient(900px 500px at 85% 35%, rgba(95, 240, 190, .18), transparent 60%),
-        radial-gradient(900px 500px at 40% 90%, rgba(255, 140, 80, .12), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding: 24px 16px 32px;
+        radial-gradient(circle at top left, rgba(175, 104, 72, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(236, 194, 154, 0.45), transparent 24%),
+        linear-gradient(180deg, #fffaf4 0%, var(--bg) 52%, #f2e5d9 100%);
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
     }
 
-    .wrap{
-      width: min(1080px, 100%);
+    body::before{
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.36;
+      background-image:
+        linear-gradient(rgba(120, 83, 61, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 83, 61, 0.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 88%);
     }
 
-    .topbar{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
+    a{
+      color: inherit;
+    }
+
+    .shell{
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 44px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .masthead{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .brand-mark{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-seal{
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c07a57, #8f3f25);
+      color: #fff8f4;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 16px 28px rgba(125, 50, 28, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .eyebrow{
+      margin: 0;
+      color: var(--accent-strong);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .brand-copy strong{
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .masthead-note{
+      margin: 0;
+      max-width: 360px;
+      color: var(--muted);
+      text-align: right;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .section-card,
+    .product-card{
+      backdrop-filter: blur(12px);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .product-card:focus-visible{
+      outline: 3px solid rgba(162, 79, 54, 0.22);
+      outline-offset: 3px;
+    }
+
+    .section-head h2{
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .section-head p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sections{
+      display: grid;
+      gap: 24px;
+    }
+
+    .section-card{
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      background: var(--surface-strong);
+    }
+
+    .section-head{
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
       gap: 16px;
       margin-bottom: 18px;
     }
 
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
+    .section-label{
+      margin: 0 0 6px;
+      color: var(--accent-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
-    .brand h1{
-      margin:0;
-      font-size: clamp(20px, 3vw, 28px);
-      letter-spacing: .2px;
-      font-weight: 750;
-    }
-    .brand p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13.5px;
-      line-height: 1.4;
+    .directory-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
     }
 
-    .hint{
-      color: var(--muted);
-      font-size: 12.5px;
-      text-align:right;
-      line-height:1.4;
-      max-width: 340px;
+    .directory-card{
+      display: grid;
+      gap: 18px;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(255, 252, 248, 0.94), rgba(248, 237, 227, 0.86));
+      box-shadow: var(--shadow);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    /* Grid:
-       - desktop: 3 columns
-       - tablet: 2 columns
-       - mobile: 1 column
-    */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .directory-card:hover,
+    .directory-card:focus-visible{
+      transform: translateY(-4px);
+      box-shadow: 0 24px 46px rgba(95, 51, 33, 0.16);
+      border-color: rgba(162, 79, 54, 0.18);
+      outline: none;
+    }
+
+    .directory-top{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 16px;
     }
 
-    @media (max-width: 1180px){
-      .wrap{ width:min(940px, 100%); }
-      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .topbar{ align-items:flex-start; }
-      .hint{ text-align:left; max-width: unset; }
-    }
-
-    @media (max-width: 720px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .tile{
-      position:relative;
-      text-decoration:none;
-      color:inherit;
-      border-radius: var(--radius);
-      background:
-        radial-gradient(600px 250px at 20% 0%, rgba(255,255,255,.08), transparent 45%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        linear-gradient(135deg, var(--card), var(--card2));
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.08);
-      overflow:hidden;
-      transform: translateY(0);
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-      min-height: 130px;
-      padding: 18px 18px 16px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      isolation:isolate;
-    }
-
-    .tile::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(500px 200px at var(--x, 20%) var(--y, 0%),
-        rgba(120,170,255,.22), transparent 55%);
-      opacity:0;
-      transition: opacity .18s ease;
-      z-index:-1;
-    }
-
-    .tile:hover{
-      transform: translateY(-4px);
-      border-color: rgba(140,190,255,.22);
-      box-shadow: 0 16px 45px rgba(0,0,0,.55);
-    }
-    .tile:hover::before{ opacity:1; }
-
-    .tile:focus{
-      outline:none;
-      box-shadow: 0 0 0 4px var(--ring), var(--shadow);
-      border-color: rgba(160,205,255,.35);
-    }
-
-    .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-    }
-
-    .icon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
-      display:grid;
-      place-items:center;
+    .directory-mark{
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #fff9f6;
+      box-shadow: 0 18px 30px rgba(125, 50, 28, 0.16);
       flex: 0 0 auto;
     }
 
-    .title{
-      font-size: 16.5px;
-      font-weight: 720;
-      margin: 0 0 6px 0;
-      letter-spacing: .2px;
-    }
+    .directory-client .directory-mark{ background: linear-gradient(135deg, #b8664e, #93412a); }
+    .directory-tools .directory-mark{ background: linear-gradient(135deg, #735f50, #4f3d31); }
 
-    .desc{
-      margin:0;
+    .directory-tag{
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 252, 249, 0.92);
+      border: 1px solid rgba(90, 53, 34, 0.1);
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .cta{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      margin-top: 14px;
-      color: rgba(235,245,255,.95);
-      font-weight: 650;
+    .directory-card h2{
+      margin: 0 0 8px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: 34px;
+      line-height: 1.02;
+      font-weight: 700;
+    }
+
+    .directory-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .directory-meta{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .section-summary{
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 320px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .product-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card{
+      display: grid;
+      gap: 18px;
+      text-decoration: none;
+      color: inherit;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(252, 243, 235, 0.92));
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .product-card::after{
+      content: "";
+      position: absolute;
+      inset: auto -40px -46px auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(162, 79, 54, 0.14), transparent 72%);
+      transition: transform 220ms ease;
+    }
+
+    .product-card:hover,
+    .product-card:focus-visible{
+      transform: translateY(-4px);
+      box-shadow: 0 24px 46px rgba(95, 51, 33, 0.16);
+      border-color: rgba(162, 79, 54, 0.18);
+    }
+
+    .product-card:hover::after,
+    .product-card:focus-visible::after{
+      transform: scale(1.12);
+    }
+
+    .product-top{
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .product-icon{
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff9f6;
+      box-shadow: 0 18px 30px rgba(125, 50, 28, 0.16);
+      flex: 0 0 auto;
+    }
+
+    .tone-pre .product-icon{ background: linear-gradient(135deg, #b8664e, #93412a); }
+    .tone-wedding .product-icon{ background: linear-gradient(135deg, #c88d4f, #a45f2f); }
+    .tone-maternity .product-icon{ background: linear-gradient(135deg, #d38f7b, #b55f53); }
+    .tone-select .product-icon{ background: linear-gradient(135deg, #8f6748, #6a4229); }
+    .tone-attendance .product-icon{ background: linear-gradient(135deg, #7f705f, #5a4938); }
+    .tone-admin .product-icon{ background: linear-gradient(135deg, #735f50, #4f3d31); }
+
+    .product-tag{
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 252, 249, 0.92);
+      border: 1px solid rgba(90, 53, 34, 0.1);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-card h3{
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .product-card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .product-meta{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 2px;
+    }
+
+    .route{
       font-size: 13px;
+      color: var(--accent-strong);
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     .arrow{
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
-      display:grid;
-      place-items:center;
-      transition: transform .18s ease;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(162, 79, 54, 0.1);
+      color: var(--accent-strong);
     }
-    .tile:hover .arrow{ transform: translateX(2px); }
-
-    /* Optional different accent glows per tile */
-    .accent-blue{ --x: 20%; --y: 0%; }
-    .accent-green{ --x: 80%; --y: 10%; }
-    .accent-purple{ --x: 25%; --y: 50%; }
-    .accent-orange{ --x: 85%; --y: 55%; }
-    .accent-pink{ --x: 15%; --y: 85%; }
-    .accent-cyan{ --x: 70%; --y: 90%; }
 
     footer{
-      margin-top: 14px;
-      color: rgba(170,190,220,.75);
-      font-size: 12px;
-      text-align:center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    @media (min-width: 721px) and (max-width: 1180px) and (orientation: portrait){
-      .wrap{ width:min(820px, 100%); }
-    }
-
-    @media (max-width: 1180px){
-      .tile{
-        min-height: 148px;
-        padding: 20px 20px 18px;
+    @media (max-width: 1080px){
+      .directory-grid{
+        grid-template-columns: 1fr;
       }
-      .title{ font-size: 18px; }
-      .desc{ font-size: 13.5px; }
-      .cta{ margin-top: 16px; }
+
+      .product-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head,
+      footer,
+      .masthead{
+        align-items: start;
+      }
+
+      .masthead,
+      .section-head,
+      footer{
+        flex-direction: column;
+      }
+
+      .masthead-note,
+      .section-summary{
+        max-width: none;
+        text-align: left;
+      }
     }
 
-    @media (max-width: 720px){
-      .title{ font-size: 16.5px; }
-      .desc{ font-size: 13px; }
+    @media (max-width: 760px){
+      .shell{
+        width: min(var(--max), calc(100% - 20px));
+        padding-top: 20px;
+        padding-bottom: 28px;
+      }
+
+      .section-card{
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .product-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .directory-card h2{
+        font-size: 28px;
+      }
+
+      .product-card h3{
+        font-size: 22px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <main class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <h1>Welcome to MBRJ</h1>
-        <p>Select a module to continue.</p>
-      </div>
+  <main class="shell">
+    <header class="masthead">
+      <a class="brand-mark" href="#products" aria-label="Go to MBRJ products">
+        <span class="brand-seal" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3 4.5 7v5.8c0 4.4 3 8.5 7.5 9.7 4.5-1.2 7.5-5.3 7.5-9.7V7L12 3Z" fill="currentColor" fill-opacity=".18"/>
+            <path d="M12 3 4.5 7v5.8c0 4.4 3 8.5 7.5 9.7 4.5-1.2 7.5-5.3 7.5-9.7V7L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="m8.7 12.3 2.1 2.1 4.6-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="eyebrow">Main Redirect Hub</span>
+          <strong>MBRJ Main</strong>
+        </span>
+      </a>
+    </header>
+
+    <div class="sections" id="products">
+      <section class="section-card" aria-label="Directories">
+        <div class="section-head">
+          <div>
+            <p class="section-label">Browse By Area</p>
+          </div>
+        </div>
+
+        <div class="directory-grid">
+          <a class="directory-card directory-client" href="client-experiences.html" aria-label="Open client experiences directory">
+            <div class="directory-top">
+              <span class="directory-mark" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 20s-6.5-4.2-8.4-8.1C2 8.9 3.5 6 6.6 6c2 0 3.2 1 4 2.2C11.4 7 12.6 6 14.6 6c3.1 0 4.6 2.9 3 5.9C18.5 15.8 12 20 12 20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="directory-tag">Public Facing</span>
+            </div>
+            <div>
+              <h2>Client Experiences</h2>
+              <p>Open a dedicated page for the customer-facing products: pre-wedding, wedding, and maternity.</p>
+            </div>
+            <div class="directory-meta">
+              <span class="route">Open grouped page</span>
+              <span class="arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="directory-card directory-tools" href="internal-tools.html" aria-label="Open internal tools directory">
+            <div class="directory-top">
+              <span class="directory-mark" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 15.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="m19 12 1.8-1-1.3-3-2 .3a7.7 7.7 0 0 0-1.7-1l-.5-2h-3.2l-.5 2a7.7 7.7 0 0 0-1.7 1l-2-.3-1.3 3L5 12l.6 1.7-1.3 3 2-.3c.5.4 1.1.7 1.7 1l.5 2h3.2l.5-2c.6-.3 1.2-.6 1.7-1l2 .3 1.3-3L19 12Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="directory-tag">Operations</span>
+            </div>
+            <div>
+              <h2>Internal Tools</h2>
+              <p>Open a separate page for the operational products: easy select, attendance, and admin.</p>
+            </div>
+            <div class="directory-meta">
+              <span class="route">Open grouped page</span>
+              <span class="arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
     </div>
 
-    <section class="grid">
-      <!-- 1) Photo Gallery -->
-      <a class="tile accent-pink" href="/gallery" aria-label="Go to Photo Gallery">
-        <div class="row">
-          <div>
-            <h2 class="title">Photo Gallery</h2>
-            <p class="desc">Browse albums and share client-ready previews.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- image icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M8 11l3 3 4-4 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 9.2a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6Z" fill="currentColor"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 2) Attendance App -->
-      <a class="tile accent-blue" href="/attendance" aria-label="Go to Attendance App">
-        <div class="row">
-          <div>
-            <h2 class="title">Attendance App</h2>
-            <p class="desc">Employee login, daily punches, and monthly overview.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- calendar icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M8 3v3M16 3v3M4 8h16M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M8 12h3M8 16h3M13 12h3M13 16h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 3) Photo Selection -->
-      <a class="tile accent-green" href="/selection" aria-label="Go to Photo Selection">
-        <div class="row">
-          <div>
-            <h2 class="title">Photo Selection</h2>
-            <p class="desc">Client photo selection and download workflow.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- check icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 4) Admin Panel -->
-      <a class="tile accent-orange" href="/admin" aria-label="Go to Admin Panel">
-        <div class="row">
-          <div>
-            <h2 class="title">Admin Panel</h2>
-            <p class="desc">Manage users, projects, roles, and configuration.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- settings icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M19.4 15a7.8 7.8 0 0 0 .1-1 7.8 7.8 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a8.7 8.7 0 0 0-1.7-1l-.4-2.6H9.1L8.7 7a8.7 8.7 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a7.8 7.8 0 0 0-.1 1 7.8 7.8 0 0 0 .1 1l-2 1.5 2 3.5 2.4-1a8.7 8.7 0 0 0 1.7 1l.4 2.6h5.8l.4-2.6a8.7 8.7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5Z"
-                    stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 5) MBRJ Creator -->
-      <a class="tile accent-purple" href="/mbrj-co-selection" aria-label="Go to MBRJ Creator">
-        <div class="row">
-          <div>
-            <h2 class="title">MBRJ Creator</h2>
-            <p class="desc">Collaborative creator view for internal review.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- users icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 6) Reports / Dashboard -->
-      <a class="tile accent-cyan" href="/reports" aria-label="Coming Soon">
-        <div class="row">
-          <div>
-            <h2 class="title">Coming Soon</h2>
-            <p class="desc">Reports and dashboard features will be available soon.</p>
-          </div>
-          <div class="icon" aria-hidden="true">
-            <!-- bar chart icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M10 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M16 20v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M22 20V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cta">
-          Open <span class="arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-    </section>
-
     <footer>
-      © <span id="y"></span> • MBRJ copyrights • Single-domain launcher page (static)
+      <span>© <span id="year"></span> MBRJ Main</span>
+      <span>Static redirect homepage for the MBRJ product suite.</span>
     </footer>
   </main>
 
   <script>
-    // Just for the footer year; safe for static hosting
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // Nice hover tracking for glow position (optional)
-    document.querySelectorAll(".tile").forEach((tile) => {
-      tile.addEventListener("mousemove", (e) => {
-        const r = tile.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        tile.style.setProperty("--x", x + "%");
-        tile.style.setProperty("--y", y + "%");
-      });
-    });
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

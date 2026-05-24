@@ -1,24 +1,30 @@
-# MBRJ Launcher Page
+# MBRJ Main Redirect Page
 
-Static single-page launcher for MBRJ modules.
+Static single-page redirect hub for the MBRJ product suite.
 
 ## Files
 
-- `index.html` - main landing page UI (HTML + CSS + JS in one file)
+- `index.html` - main landing page UI with grouped directories and direct destination cards
+- `client-experiences.html` - grouped page for pre-wedding, wedding, and maternity
+- `internal-tools.html` - grouped page for easy select, attendance app, and admin
+- `client-experiences.partial.html` - shared imported markup for the client experience cards
+- `internal-tools.partial.html` - shared imported markup for the internal tools cards
 
-## Module Links (Current Order)
+## Redirect Targets
 
-1. Photo Gallery - `/gallery`
-2. Attendance App - `/attendance`
-3. Photo Selection - `/selection`
-4. Admin Panel - `/admin`
-5. MBRJ Creator - `/mbrj-co-selection`
-6. Coming Soon - `/reports`
+1. MBRJ Pre-Wedding - `https://prewedding.momentsbyrj.in`
+2. MBRJ Wedding - `https://wedding.momentsbyrj.in`
+3. MBRJ Maternity - `https://maternity.momentsbyrj.in`
+4. MBRJ Easy Select - `https://easyselect.momentsbyrj.in`
+5. MBRJ Attendance App - `https://attendance.momentsbyrj.in`
+6. MBRJ Admin - `https://admin.momentsbyrj.in`
 
-## Branding
+## Structure
 
-- Header: `Welcome to MBRJ`
-- Footer: `© <year> • MBRJ copyrights • Single-domain launcher page (static)`
+- Main index with separate grouped entry cards for client experiences and internal tools
+- Client-facing cards loaded from a shared partial import
+- Internal tool cards loaded from a shared partial import
+- Static footer with current year
 
 ## Run Locally
 
@@ -36,8 +42,6 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## iPad Responsive Notes
+## Responsive Notes
 
-- Tablet layout uses a 2-column grid up to `1180px`.
-- Mobile switches to 1 column at `720px`.
-- iPad portrait has a tuned max content width for better balance.
+- Product cards use a 2-column grid on desktop and a single-column stack on mobile
