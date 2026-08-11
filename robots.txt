@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# internal-tools.html is left crawlable on purpose so Google can read its
+# noindex tag and drop it from the index. Do not add a Disallow for it.
+
+Sitemap: https://www.momentsbyrj.in/sitemap.xml
