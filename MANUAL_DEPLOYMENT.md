@@ -6,18 +6,47 @@ For normal HTML updates:
 - You only need to sync the project files to the server
 - You do **not** need to restart Nginx
 
+## Quick Way: `./deploy.sh`
+
+Steps 1 to 6 below are automated by the deploy script. From your Mac:
+
+```bash
+./deploy.sh
+```
+
+It validates the HTML, `sitemap.xml` and internal links first, syncs to the
+server home folder, then asks before replacing the live webroot and fixing
+ownership and permissions.
+
+Useful flags:
+
+- `./deploy.sh --check` - run the validation only, deploy nothing
+- `./deploy.sh --dry-run` - show what would be synced, change nothing
+- `./deploy.sh --yes` - skip the confirmation prompt
+
+The server, staging path and webroot can be overridden with the `MBRJ_SERVER`,
+`MBRJ_STAGE_DIR` and `MBRJ_LIVE_DIR` environment variables.
+
+The manual steps below still work and are kept as the fallback if SSH or the
+script misbehaves.
+
 ## Step 1: Sync The Project Folder From Your Mac To The Server Home Folder
 
 Run this on your Mac:
 
 ```bash
-rsync -av --delete \
-  --exclude '.git/' \
-  --exclude 'README.md' \
-  --exclude 'MANUAL_DEPLOYMENT.md' \
+rsync -av --delete --delete-excluded \
+  --exclude '.*' \
+  --exclude '*.md' \
+  --exclude 'deploy.sh' \
   /Users/rohansolse/Documents/mbrj-main/ \
   rohansolse@192.168.1.33:/home/rohansolse/mbrj-main/
 ```
+
+The `--exclude '.*'` matters: it keeps hidden folders such as `.git` and
+`.claude` off the web server. Without it those get copied into the webroot and
+served publicly. `deploy.sh` uses a stricter allowlist and only ships web
+assets.
 
 Why:
 - Direct write access to `/var/www/mbrj-main` is not allowed for the normal SSH user

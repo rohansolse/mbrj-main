@@ -7,6 +7,7 @@ Static single-page redirect hub for the MBRJ product suite.
 - `index.html` - main landing page UI with grouped directories and direct destination cards
 - `client-experiences.html` - grouped page for pre-wedding, wedding, and maternity
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
+- `deploy.sh` - validates the site, then deploys it to the Nginx box (`./deploy.sh`)
 - `robots.txt` - crawler rules + sitemap pointer (internal tools stays crawlable so its `noindex` is seen)
 - `sitemap.xml` - lists the two public pages
 - `favicon.svg` - main favicon source
