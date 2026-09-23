@@ -119,9 +119,14 @@ class Collector(HTMLParser):
             self.h1_count += 1
         elif tag == "a" and a.get("href"):
             self.links.append(a["href"])
+        elif tag == "img" and a.get("src"):
+            # local images ship too, so a missing one is a broken page
+            self.links.append(a["src"])
         elif tag == "link":
             if (a.get("rel") or "").lower() == "canonical":
                 self.canonical = a.get("href")
+            elif a.get("href"):
+                self.links.append(a["href"])
         elif tag == "meta":
             name = (a.get("name") or "").lower()
             if name == "description":

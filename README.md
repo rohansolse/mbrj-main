@@ -4,7 +4,8 @@ Static single-page redirect hub for the MBRJ product suite.
 
 ## Files
 
-- `index.html` - main landing page UI with grouped directories and direct destination cards
+- `index.html` - public home page: hero, one photo card per shoot (linking straight to its subdomain), WhatsApp/call contact band; internal tools are linked from the footer only
+- `images/` - the four 4:5 WebP card covers, cropped from each shoot site's share image
 - `client-experiences.html` - grouped page for pre-wedding, wedding, maternity, and baby shoot
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
 - `deploy.sh` - validates the site, then deploys it to the Nginx box (`./deploy.sh`)
@@ -26,8 +27,8 @@ Static single-page redirect hub for the MBRJ product suite.
 
 ## Structure
 
-- Main index with separate grouped entry cards for client experiences and internal tools
-- Dedicated client experiences page
+- Home page links each shoot site directly; internal tools sit behind a footer link
+- Client experiences page (still in the sitemap, but no longer linked from the home page)
 - Dedicated internal tools page
 - Static footer with current year
 
@@ -81,4 +82,4 @@ Step-by-step deployment instructions are available in `MANUAL_DEPLOYMENT.md`.
 
 ## Responsive Notes
 
-- Product cards use a 2-column grid on desktop and a single-column stack on mobile
+- Home shoot cards: 4 columns on desktop, 2 on tablet, and image-beside-text rows on phones (≤600px)
