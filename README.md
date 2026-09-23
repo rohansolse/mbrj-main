@@ -4,8 +4,9 @@ Static single-page redirect hub for the MBRJ product suite.
 
 ## Files
 
-- `index.html` - public home page: hero, one photo card per shoot (linking straight to its subdomain), WhatsApp/call contact band; internal tools are linked from the footer only
+- `index.html` - public home page: hero, "As featured in" press strip, one photo card per shoot (linking straight to its subdomain), WhatsApp/call contact band; internal tools are linked from the footer only
 - `images/` - the four 4:5 WebP card covers, cropped from each shoot site's share image
+- `images/press/` - 240px round WebP badges for the press strip (WallMag, WedWar, Thane Vaibhav), reusable on the shoot sites
 - `client-experiences.html` - grouped page for pre-wedding, wedding, maternity, and baby shoot
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
 - `deploy.sh` - validates the site, then deploys it to the Nginx box (`./deploy.sh`)

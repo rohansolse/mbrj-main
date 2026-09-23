@@ -152,6 +152,11 @@
 
     .btn--outline:hover{ background: #fff; }
 
+    .btn-icon{
+      flex: 0 0 auto;
+      display: block;
+    }
+
     .btn--small{
       min-height: 40px;
       padding: 8px 18px;
@@ -204,9 +209,9 @@
       background: linear-gradient(135deg, var(--rose) 0%, var(--rose-text) 100%);
       color: #fff;
       font-family: var(--font-display);
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       box-shadow: 0 8px 18px -8px rgb(152 47 83 / 0.6);
     }
 
@@ -275,6 +280,61 @@
       justify-content: center;
       gap: 12px;
       margin-top: 30px;
+    }
+
+    /* ----------------------------------------------------------------- press */
+    .press{
+      padding: 0 0 clamp(48px, 7vw, 80px);
+      text-align: center;
+    }
+
+    .press-title{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto clamp(20px, 3vw, 28px);
+      color: var(--brass-text);
+      font-family: var(--font-body);
+    }
+
+    .press-title::before,
+    .press-title::after{
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .press-list{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    .press-item{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .press-item img{
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .press-name{
+      color: var(--text-soft);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
     }
 
     /* ---------------------------------------------------------------- shoots */
@@ -462,9 +522,14 @@
       .shoot-grid{ grid-template-columns: 1fr; gap: 14px; }
       .shoot-card{ flex-direction: row; }
       .shoot-photo{ flex: 0 0 38%; aspect-ratio: auto; min-height: 170px; }
-      .shoot-body{ padding: 16px 16px 18px; }
+      .shoot-body{ justify-content: center; padding: 16px 16px 18px; }
       .shoot-body h3{ font-size: 21px; }
-      .shoot-body p{ font-size: 14px; margin-bottom: 10px; }
+      .shoot-body p,
+      .hide-on-phone{ display: none; }
+      .shoot-more{ margin-top: 8px; }
+      .press-list{ gap: 10px; }
+      .press-item img{ width: 68px; height: 68px; margin-bottom: 8px; }
+      .press-name{ font-size: 12px; }
       .topbar .btn-label-long{ display: none; }
       .footer-inner{ flex-direction: column; text-align: center; }
     }
@@ -478,25 +543,25 @@
 <body>
   <header class="shell topbar">
     <a class="brand" href="/" aria-label="Moments by RJ home">
-      <span class="brand-mark" aria-hidden="true">RJ</span>
+      <span class="brand-mark" aria-hidden="true">MBRJ</span>
       <span class="brand-name">Moments by RJ</span>
     </a>
     <a class="btn btn--outline btn--small" href="https://wa.me/918169459552?text=Hi%20Moments%20by%20RJ%2C%20I%27d%20like%20to%20plan%20a%20shoot.">
-      WhatsApp<span class="btn-label-long">&nbsp;us</span>
+      <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.07.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.34M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.005c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.49-8.41"/></svg>
+      <span>WhatsApp<span class="btn-label-long"> us</span></span>
     </a>
   </header>
 
   <main>
     <section class="hero">
       <div class="shell">
-        <p class="hero-script">Moments by RJ</p>
+        <p class="hero-script hide-on-phone">Moments by RJ</p>
         <h1>
           <span class="hero-title">Moments worth keeping, <em>beautifully captured.</em></span>
           <span class="hero-places">Wedding · Pre-Wedding · Maternity · Baby Photography</span>
         </h1>
         <p class="hero-lead">
-          Award-winning candid photography across Mumbai, Navi Mumbai and Thane,
-          from your first shoot together to your baby's first smile.
+          Award-winning candid photography across Mumbai, Navi Mumbai and Thane.
         </p>
         <div class="hero-actions">
           <a class="btn btn--primary" href="#shoots">Explore our shoots</a>
@@ -505,12 +570,32 @@
       </div>
     </section>
 
+    <section class="press" aria-labelledby="press-title">
+      <div class="shell">
+        <h2 class="eyebrow press-title" id="press-title">As featured in</h2>
+        <ul class="press-list">
+          <li class="press-item">
+            <img src="images/press/wallmag.webp" width="240" height="240" alt="" decoding="async" />
+            <span class="press-name">WallMag</span>
+          </li>
+          <li class="press-item">
+            <img src="images/press/wedwar.webp" width="240" height="240" alt="" decoding="async" />
+            <span class="press-name">WedWar</span>
+          </li>
+          <li class="press-item">
+            <img src="images/press/thane-vaibhav.webp" width="240" height="240" alt="" decoding="async" />
+            <span class="press-name">Thane Vaibhav</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="shoots" id="shoots" aria-labelledby="shoots-title">
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">Our shoots</p>
           <h2 id="shoots-title">Choose your shoot</h2>
-          <p>Each one has its own page with packages, prices and sample photos.</p>
+          <p class="hide-on-phone">Each one has its own page with packages, prices and sample photos.</p>
         </div>
 
         <ul class="shoot-grid">
@@ -574,10 +659,10 @@
       <div class="shell">
         <p class="hero-script">Let's talk</p>
         <h2 id="contact-title">Planning a shoot?</h2>
-        <p>Send us your date and the shoot you have in mind, and we'll help you plan the rest.</p>
+        <p>Send us your date and the shoot you have in mind.</p>
         <div class="hero-actions">
-          <a class="btn btn--primary" href="https://wa.me/918169459552?text=Hi%20Moments%20by%20RJ%2C%20I%27d%20like%20to%20plan%20a%20shoot.">Chat on WhatsApp</a>
-          <a class="btn btn--glass" href="tel:+918169459552">Call +91 81694 59552</a>
+          <a class="btn btn--primary" href="https://wa.me/918169459552?text=Hi%20Moments%20by%20RJ%2C%20I%27d%20like%20to%20plan%20a%20shoot."><svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.07.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.34M12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.005c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.49-8.41"/></svg>Chat on WhatsApp</a>
+          <a class="btn btn--glass" href="tel:+918169459552"><svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3h2.2l1.5 3.7-1.8 1.2a12.4 12.4 0 0 0 5.6 5.6l1.2-1.8 3.7 1.5v2.2a2.6 2.6 0 0 1-2.9 2.6A15.6 15.6 0 0 1 4 6.9 2.6 2.6 0 0 1 6.6 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Call +91 81694 59552</a>
         </div>
       </div>
     </section>
