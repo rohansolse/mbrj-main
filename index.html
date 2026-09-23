@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moments by RJ | Wedding, Pre-Wedding &amp; Maternity Photography</title>
+  <title>Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots</title>
   <meta
     name="description"
-    content="Moments by RJ is a photography studio capturing weddings, pre-wedding shoots and maternity stories. Browse our galleries and client photo-selection portals."
+    content="Moments by RJ is a photography studio capturing weddings, pre-wedding shoots, maternity stories and baby shoots. Browse our galleries and photo-selection portals."
   />
   <link rel="canonical" href="https://www.momentsbyrj.in/" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -15,17 +15,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Moments by RJ" />
   <meta property="og:url" content="https://www.momentsbyrj.in/" />
-  <meta property="og:title" content="Moments by RJ | Wedding, Pre-Wedding &amp; Maternity Photography" />
+  <meta property="og:title" content="Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots" />
   <meta
     property="og:description"
-    content="Moments by RJ is a photography studio capturing weddings, pre-wedding shoots and maternity stories. Browse our galleries and client photo-selection portals."
+    content="Moments by RJ is a photography studio capturing weddings, pre-wedding shoots, maternity stories and baby shoots. Browse our galleries and photo-selection portals."
   />
   <meta property="og:image" content="https://www.momentsbyrj.in/favicon-512.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Moments by RJ | Wedding, Pre-Wedding &amp; Maternity Photography" />
+  <meta name="twitter:title" content="Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots" />
   <meta
     name="twitter:description"
-    content="Wedding, pre-wedding and maternity photography by Moments by RJ."
+    content="Wedding, pre-wedding, maternity and baby photography by Moments by RJ."
   />
   <meta name="twitter:image" content="https://www.momentsbyrj.in/favicon-512.png" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -41,12 +41,13 @@
     "url": "https://www.momentsbyrj.in/",
     "logo": "https://www.momentsbyrj.in/favicon-512.png",
     "image": "https://www.momentsbyrj.in/favicon-512.png",
-    "description": "Photography studio capturing weddings, pre-wedding shoots and maternity stories.",
+    "description": "Photography studio capturing weddings, pre-wedding shoots, maternity stories and baby shoots.",
     "areaServed": "IN",
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding Photography" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pre-Wedding Photography" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maternity Photography" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maternity Photography" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Baby Photography" } }
     ]
   }
   </script>
@@ -442,6 +443,44 @@
       color: var(--accent-strong);
     }
 
+    /* Plain text links on purpose: the words in them tell search engines what
+       each subdomain is about, which the directory cards above do not. */
+    .service-links{
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .service-links a{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-strong);
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .service-links a:hover,
+    .service-links a:focus-visible{
+      border-bottom-color: currentColor;
+    }
+
+    .service-links li{
+      display: grid;
+      gap: 2px;
+      justify-items: start;
+    }
+
+    .service-note{
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
     footer{
       display: flex;
       align-items: center;
@@ -544,7 +583,7 @@
             </div>
             <div>
               <h2>Client Experiences</h2>
-              <p>Wedding, pre-wedding and maternity photography — galleries and booking for couples and families.</p>
+              <p>Wedding, pre-wedding, maternity and baby photography — galleries and booking for couples and families.</p>
             </div>
             <div class="directory-meta">
               <span class="route">Open grouped page</span>
@@ -582,11 +621,31 @@
         </div>
       </section>
 
+      <section class="section-card" aria-labelledby="services-label">
+        <h2 class="section-label" id="services-label">Book a Shoot</h2>
+        <ul class="service-links">
+          <li>
+            <a href="https://prewedding.momentsbyrj.in/" target="_blank" rel="noopener noreferrer">Pre-wedding shoots in Mumbai &amp; Navi Mumbai <span aria-hidden="true">→</span></a>
+            <span class="service-note">Packages, prices and sample photos</span>
+          </li>
+          <li>
+            <a href="https://wedding.momentsbyrj.in/" target="_blank" rel="noopener noreferrer">Wedding photography <span aria-hidden="true">→</span></a>
+          </li>
+          <li>
+            <a href="https://maternity.momentsbyrj.in/" target="_blank" rel="noopener noreferrer">Maternity photoshoots <span aria-hidden="true">→</span></a>
+          </li>
+          <li>
+            <a href="https://babyshoot.momentsbyrj.in/" target="_blank" rel="noopener noreferrer">Baby shoots in Airoli, Navi Mumbai <span aria-hidden="true">→</span></a>
+            <span class="service-note">Packages, themes and milestone shoots</span>
+          </li>
+        </ul>
+      </section>
+
     </div>
 
     <footer>
       <span>© <span id="year"></span> Moments by RJ</span>
-      <span>Wedding, pre-wedding and maternity photography.</span>
+      <span>Wedding, pre-wedding, maternity and baby photography.</span>
     </footer>
   </main>
 

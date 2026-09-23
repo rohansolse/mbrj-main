@@ -5,7 +5,7 @@ Static single-page redirect hub for the MBRJ product suite.
 ## Files
 
 - `index.html` - main landing page UI with grouped directories and direct destination cards
-- `client-experiences.html` - grouped page for pre-wedding, wedding, and maternity
+- `client-experiences.html` - grouped page for pre-wedding, wedding, maternity, and baby shoot
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
 - `deploy.sh` - validates the site, then deploys it to the Nginx box (`./deploy.sh`)
 - `robots.txt` - crawler rules + sitemap pointer (internal tools stays crawlable so its `noindex` is seen)
@@ -19,9 +19,10 @@ Static single-page redirect hub for the MBRJ product suite.
 1. MBRJ Pre-Wedding - `https://prewedding.momentsbyrj.in`
 2. MBRJ Wedding - `https://wedding.momentsbyrj.in`
 3. MBRJ Maternity - `https://maternity.momentsbyrj.in`
-4. MBRJ Easy Select - `https://easyselect.momentsbyrj.in`
-5. MBRJ Attendance App - `https://attendance.momentsbyrj.in`
-6. MBRJ Admin - `https://admin.momentsbyrj.in`
+4. MBRJ Baby Shoot - `https://babyshoot.momentsbyrj.in`
+5. MBRJ Easy Select - `https://easyselect.momentsbyrj.in`
+6. MBRJ Attendance App - `https://attendance.momentsbyrj.in`
+7. MBRJ Admin - `https://admin.momentsbyrj.in`
 
 ## Structure
 
