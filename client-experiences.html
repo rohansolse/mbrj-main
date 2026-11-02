@@ -407,5 +407,20 @@
       </div>
     </section>
   </main>
+
+  <script>
+    // Registers sw.js, which keeps this site readable when the origin is down.
+    // On load, so it never competes with the page's own images. Only over
+    // HTTPS or on localhost — a service worker is not available otherwise, and
+    // opening index.html from the filesystem must not throw.
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {
+          // Private mode, storage denied, or a file:// open. The site still
+          // works online; there is nothing useful to tell the visitor.
+        });
+      });
+    }
+  </script>
 </body>
 </html>
