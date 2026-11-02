@@ -5,9 +5,9 @@ Static single-page redirect hub for the MBRJ product suite.
 ## Files
 
 - `index.html` - public home page: hero, "As featured in" press strip, one photo card per shoot (linking straight to its subdomain), WhatsApp/call contact band; internal tools are linked from the footer only
-- `images/` - the four 4:5 WebP card covers, cropped from each shoot site's share image
+- `images/` - the five 4:5 WebP card covers, cropped from each shoot site's share image (albums.webp comes from an album page in `mbrj-albums`)
 - `images/press/` - 240px round WebP badges for the press strip (WallMag, WedWar, Thane Vaibhav), reusable on the shoot sites
-- `client-experiences.html` - grouped page for pre-wedding, wedding, maternity, and baby shoot
+- `client-experiences.html` - grouped page for pre-wedding, wedding, maternity, baby shoot and albums
 - `internal-tools.html` - grouped page for easy select, attendance app, and admin
 - `deploy.sh` - validates the site, then deploys it to the Nginx box (`./deploy.sh`)
 - `robots.txt` - crawler rules + sitemap pointer (internal tools stays crawlable so its `noindex` is seen)
@@ -23,9 +23,10 @@ Static single-page redirect hub for the MBRJ product suite.
 2. MBRJ Wedding - `https://wedding.momentsbyrj.in`
 3. MBRJ Maternity - `https://maternity.momentsbyrj.in`
 4. MBRJ Baby Shoot - `https://babyshoot.momentsbyrj.in`
-5. MBRJ Easy Select - `https://easyselect.momentsbyrj.in`
-6. MBRJ Attendance App - `https://attendance.momentsbyrj.in`
-7. MBRJ Admin - `https://admin.momentsbyrj.in`
+5. MBRJ Albums - `https://albums.momentsbyrj.in`
+6. MBRJ Easy Select - `https://easyselect.momentsbyrj.in`
+7. MBRJ Attendance App - `https://attendance.momentsbyrj.in`
+8. MBRJ Admin - `https://admin.momentsbyrj.in`
 
 ## Structure
 

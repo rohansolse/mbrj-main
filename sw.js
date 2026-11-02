@@ -35,6 +35,7 @@ const PRECACHE = [
   '/images/prewedding.webp',
   '/images/babyshoot.webp',
   '/images/maternity.webp',
+  '/images/albums.webp',
   '/images/press/wedwar.webp',
   '/images/press/wallmag.webp',
   '/images/press/thane-vaibhav.webp',

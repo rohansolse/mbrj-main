@@ -6,7 +6,7 @@
   <title>Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots</title>
   <meta
     name="description"
-    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane."
+    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane, plus printed photo albums."
   />
   <link rel="canonical" href="https://www.momentsbyrj.in/" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -18,14 +18,14 @@
   <meta property="og:title" content="Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots" />
   <meta
     property="og:description"
-    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane."
+    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane, plus printed photo albums."
   />
   <meta property="og:image" content="https://www.momentsbyrj.in/favicon-512.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Moments by RJ | Wedding, Pre-Wedding, Maternity &amp; Baby Shoots" />
   <meta
     name="twitter:description"
-    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane."
+    content="Award-winning photography studio in Navi Mumbai for weddings, pre-wedding, maternity and baby shoots across Mumbai, Navi Mumbai and Thane, plus printed photo albums."
   />
   <meta name="twitter:image" content="https://www.momentsbyrj.in/favicon-512.png" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -53,7 +53,8 @@
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding Photography" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pre-Wedding Photography" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maternity Photography" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Baby Photography" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Baby Photography" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Photo Albums" } }
     ]
   }
   </script>
@@ -363,7 +364,9 @@
 
     .shoot-grid{
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      /* Five cards, one row on desktop — a 4-column row would leave the fifth
+         stranded on its own. */
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 22px;
       margin: 0;
       padding: 0;
@@ -512,8 +515,12 @@
     .footer-links a:hover{ color: #fff; }
 
     /* ------------------------------------------------------------ responsive */
+    @media (max-width: 1180px){
+      .shoot-grid{ gap: 16px; }
+    }
+
     @media (max-width: 1024px){
-      .shoot-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shoot-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     }
 
     /* Phones: side-by-side rows keep four shoots to one short scroll instead
@@ -648,6 +655,19 @@
                 <h3>Baby Shoot</h3>
                 <p>Theme setups, handcrafted wooden props and milestone shoots in Airoli, Navi Mumbai.</p>
                 <span class="shoot-more">View packages <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="shoot-card" href="https://albums.momentsbyrj.in/">
+              <div class="shoot-photo">
+                <img src="images/albums.webp" width="480" height="600" alt="Page from a premium wedding album by Moments by RJ" loading="lazy" decoding="async" />
+              </div>
+              <div class="shoot-body">
+                <span class="shoot-kicker">Keepsake</span>
+                <h3>Albums</h3>
+                <p>Turn through magazine and premium albums page by page, then check the rate card.</p>
+                <span class="shoot-more">View albums <span aria-hidden="true">→</span></span>
               </div>
             </a>
           </li>
